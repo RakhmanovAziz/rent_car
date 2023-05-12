@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: 'Roboto';
+            background: rgb(50, 50, 50);
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        input {
+            border: none;
+            outline: none;
+            padding: 15px;
+            background: rgb(255, 255, 255);
+            font-size: 15px;
+            border-radius: 5px;
+        }
+
+        .btn {
+            transition: all 300ms;
+        }
+
+        .btn:hover {
+            background: rgb(182, 182, 182);
+        }
+
+        .error {
+            color: rgb(50, 50, 50);
+        }
+    </style>
+</head>
+<body>
+<form method="POST" class="form" action="/registration" th:object="${person}">
+    <label for="username">Username:</label>
+    <input type="text" th:field="*{username}" id="username" required>
+    <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
+
+    <label for="yearOfBirth">Year of Birth:</label>
+    <input type="text" th:field="*{year_of_birth}" id="yearOfBirth" required>
+    <div class="error" th:if="${#fields.hasErrors('year_of_birth')}" th:errors="*{year_of_birth}">Year of Birth Error</div>
+
+    <label for="password">Password:</label>
+    <input type="password" th:field="*{password}" id="password" required>
+    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+    <input type="submit" value="Sign up">
+</form>
+</body>
+</html>
+
